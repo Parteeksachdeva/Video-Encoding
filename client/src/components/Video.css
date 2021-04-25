@@ -1,0 +1,20 @@
+.video{
+    position: relative;
+}
+.video>img{
+    object-fit: contain;
+    width:200px;
+}
+.video>video{
+    object-fit: cover;
+    
+    position: absolute;
+    top: 0;
+    left:0;
+    opacity: 0;
+   transition: transform 450ms;
+}
+.video>video:hover{
+    opacity:1;
+    transform: scale(1.05);
+}

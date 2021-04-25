@@ -1,0 +1,35 @@
+.file{
+    flex:0.3;
+    width: 100%;
+    height: 100%;
+}
+.file__preview{
+    height: 70%;
+    width: 100%;
+}
+.file__form{
+    height: 30%;
+    width: 100%;
+}
+.file__form>form{
+    display: flex;
+    flex-direction: column;
+}
+.file__form>form>div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+.preview__video{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+}
+/* .file__form>form>label{
+    background-color: #99c793;
+    border-radius: 50px;
+} */
