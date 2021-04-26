@@ -1,10 +1,13 @@
-import React from 'react'
+import React,{useState} from 'react'
 import "./Video.css"
 function Video({value}) {
+
+    const [isLoaded, setIsLoaded] = useState(false)
     const over=(e)=>{
         try{
             e.currentTarget.play()
-            console.log(e.currentTarget)
+            .then(value=>console.log(value))
+            .catch(err=>console.log(err))
         }
         catch(err){console.log(err)}
             
@@ -13,15 +16,16 @@ function Video({value}) {
         try{
             e.currentTarget.currentTime=0
             e.currentTarget.pause()
-            console.log(e.currentTarget)
         }
         catch(err){console.log(err)}
     }
     return (
         
         <div className="video">
-            <img src="https://stilearning.com/vision/assets/globals/img/dummy/img-10.jpg" alt="" />
-            <video  width="200" height="160" onMouseOver={over} onMouseOut={out} autoPlay={false} loop={true} pause="">
+            {isLoaded ? <img src="https://stilearning.com/vision/assets/globals/img/dummy/img-10.jpg" alt="" /> : "wait"}
+            <video onLoadedData={()=>{
+                 setIsLoaded(true)
+            }} width="200" height="160" onMouseOver={over} onMouseOut={out} autoPlay={false} loop={true} pause="" muted>
                 <source src={value.default} type="video/mp4"/>
             </video>
         </div>

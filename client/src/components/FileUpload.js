@@ -5,6 +5,7 @@ import axios from "axios"
 function FileUpload() {
     const [videos,setVideos] = useState()
     const [thumbnail,setThumbnail] = useState()
+    const [uploadPercentage, setUploadPercentage] = useState(0);
 
     const handleVideos=(e)=>{
         setVideos(e.target.files[0])
@@ -17,11 +18,22 @@ function FileUpload() {
         let data = new FormData();
         data.append('file',videos)
         try{
-            const res=await axios.post('http://localhost:5000/upload',data,{
+            const res=await axios.post('/upload',data,{
                 headers:{
                     'Content-Type' : 'multipart/form-data'
-                }
+                },
+                onUploadProgress: progressEvent => {
+                    setUploadPercentage(
+                      parseInt(
+                        Math.round((progressEvent.loaded * 100) / progressEvent.total)
+                      )
+                    );
+          
+                    // Clear percentage
+                    setTimeout(() => setUploadPercentage(0), 10000);
+                  }
             })
+            console.log(res)
         }
         catch(err){
             console.log(err)
@@ -35,6 +47,7 @@ function FileUpload() {
                 <source src={videos} type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
+            {uploadPercentage}
             </div>
             <div></div>
             <div></div>
