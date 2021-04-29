@@ -2,11 +2,11 @@ import React,{useState} from 'react'
 import "./FileUpload.css"
 import axios from "axios"
 
-function FileUpload() {
+function FileUpload({clickedVideo}) {
     const [videos,setVideos] = useState()
     const [thumbnail,setThumbnail] = useState()
     const [uploadPercentage, setUploadPercentage] = useState(0);
-
+    const [resVideo, setresVideo] = useState()
     const handleVideos=(e)=>{
         setVideos(e.target.files[0])
     }
@@ -16,6 +16,7 @@ function FileUpload() {
     const onSubmit=async (e)=>{
         e.preventDefault()
         let data = new FormData();
+        // console.log(videos)
         data.append('file',videos)
         try{
             const res=await axios.post('/upload',data,{
@@ -32,8 +33,10 @@ function FileUpload() {
                     // Clear percentage
                     setTimeout(() => setUploadPercentage(0), 10000);
                   }
+                  
             })
-            console.log(res)
+            console.log("======================",res)
+            // setresVideo(res)
         }
         catch(err){
             console.log(err)
@@ -43,14 +46,15 @@ function FileUpload() {
         <div className="file">
             <div className="file__preview">
             <div className="preview__video">
-            <video width="320" height="240" controls>
-                <source src={videos} type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
-            {uploadPercentage}
+            <iframe src={clickedVideo} width="320" height="200"></iframe>
             </div>
-            <div></div>
-            <div></div>
+            <div className="file__progress">
+                <div className="file__progressBar">
+                    <div className="progressBar__percentage" style={{"width": `${uploadPercentage}%`}}>
+                        {uploadPercentage}%
+                    </div>
+                </div>
+            </div>
             </div>
             <div className="file__form">
                 <form onSubmit={onSubmit}>

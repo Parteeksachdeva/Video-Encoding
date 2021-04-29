@@ -1,26 +1,69 @@
-const express = require('express');
-const fileUpload = require('express-fileupload');
+const express = require('express')
 
-const app = express();
+const fs = require('fs')
 
-app.use(fileUpload());
+const { exec } = require('child_process')
 
+const path = require('path')
 
-app.post('/upload', (req, res) => {
-  if (req.files === null) {
-    return res.status(400).json({ msg: 'No file uploaded' });
-  }
+const multer = require('multer')
 
-  const file = req.files.file;
+const bodyParser = require('body-parser')
 
-  file.mv(`${__dirname}/../client/public/upload/${file.name}`, err => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send(err);
+const app = express()
+
+var dir = 'public';
+var subDirectory = 'public/uploads'
+
+if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir);
+
+    fs.mkdirSync(subDirectory)
+
+}
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'public/uploads')
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
     }
+})
 
-    res.json({ fileName: file.name, filePath: `/upload/${file.name}` });
-  });
-});
+var upload = multer({storage:storage})
 
-app.listen(5000, () => console.log('Server Started...'));
+app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.json())
+app.use(express.static('public'))
+
+const PORT = process.env.PORT || 5000
+
+app.post('/upload',upload.single('file'),(req,res,next) => {
+    if(req.file){
+        console.log(req.file.path)
+
+        var output = Date.now() + "output.mp4"
+
+        exec(`ffmpeg -i ${req.file.path} ${output}`, (error, stdout, stderr) => {
+            if (error) {
+                console.log(`error: ${error.message}`);
+                return;
+            }
+            else{
+                console.log("file is converted",output)
+            res.download(output,(err) => {
+                if(err) console.log(err)
+                fs.unlinkSync(req.file.path)
+                //fs.unlinkSync(output)
+                next()
+
+            })
+        }
+        })
+    }
+})
+
+app.listen(PORT,() => {
+    console.log(`App is listening on Port ${PORT}`)
+})
