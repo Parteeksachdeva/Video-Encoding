@@ -26,6 +26,7 @@ function Video({value,setClickedVideo}) {
     return (
         
         <div className="video" onClick={()=>{setClickedVideo(value.default)}}>
+            <div>HI</div>
             {isLoaded ? <img src="https://stilearning.com/vision/assets/globals/img/dummy/img-10.jpg" alt="" /> : "wait"}
             <video onLoadedData={()=>{
                  setIsLoaded(true)
