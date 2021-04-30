@@ -25,11 +25,12 @@ function Video({value,setClickedVideo}) {
     }
     return (
         
-        <div className="video" onClick={()=>{setClickedVideo(value.default)}}>
-            <div>HI</div>
+        <div className="video" 
+        onClick={()=>{setClickedVideo(value.default)}}>
+           
+           
             {isLoaded ? <img src="https://stilearning.com/vision/assets/globals/img/dummy/img-10.jpg" alt="" /> : "wait"}
-            <video onLoadedData={()=>{
-                 setIsLoaded(true)
+            <video onLoadedData={()=>{setIsLoaded(true)
             }} width="200" height="160" onMouseOver={over} onMouseOut={out} autoPlay={false} loop={true} pause="" muted>
                 <source src={value.default} type="video/mp4"/>
             </video>

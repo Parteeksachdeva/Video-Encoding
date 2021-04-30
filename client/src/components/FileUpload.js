@@ -2,11 +2,12 @@ import React,{useState} from 'react'
 import "./FileUpload.css"
 import axios from "axios"
 
-function FileUpload({clickedVideo}) {
+function FileUpload({clickedVideo,setConvertCompleted}) {
     const [videos,setVideos] = useState()
     const [thumbnail,setThumbnail] = useState()
     const [uploadPercentage, setUploadPercentage] = useState(0);
     const [resVideo, setresVideo] = useState()
+    
     const handleVideos=(e)=>{
         setVideos(e.target.files[0])
     }
@@ -35,7 +36,7 @@ function FileUpload({clickedVideo}) {
                   }
                   
             })
-            console.log("======================",res)
+            window.location.reload();
             // setresVideo(res)
         }
         catch(err){

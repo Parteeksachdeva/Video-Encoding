@@ -56,6 +56,7 @@ app.post('/upload',upload.single('file'),(req,res,next) => {
                 if(err) console.log(err)
                 fs.unlinkSync(req.file.path)
                 //fs.unlinkSync(output)
+                res.status(201)
                 next()
 
             })
