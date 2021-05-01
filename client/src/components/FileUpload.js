@@ -19,6 +19,7 @@ function FileUpload({clickedVideo,setConvertCompleted}) {
         let data = new FormData();
         // console.log(videos)
         data.append('file',videos)
+
         try{
             const res=await axios.post('/upload',data,{
                 headers:{
@@ -36,12 +37,28 @@ function FileUpload({clickedVideo,setConvertCompleted}) {
                   }
                   
             })
-            window.location.reload();
-            // setresVideo(res)
+            
+             setresVideo(res)
+           
+            let dataImage = new FormData();
+            dataImage.append('file',thumbnail)
+            
+            try{
+                const res=await axios.post('/uploadImage',dataImage,{
+                        headers:{
+                            'Content-Type' : 'multipart/form-data'
+                        }
+                    })
+                }
+                catch(err){
+                    console.log(err)
+                }
+                window.location.reload();
         }
         catch(err){
             console.log(err)
         }
+        
     }
     return (
         <div className="file">
