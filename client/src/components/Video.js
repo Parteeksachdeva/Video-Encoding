@@ -33,7 +33,7 @@ function Video({value,setClickedVideo,thumbnail}) {
             }} width="200" height="160" onMouseOver={over} onMouseOut={out} autoPlay={false} loop={true} pause="" muted>
                 <source src={value.default} type="video/mp4"/>
             </video>
-            {isLoaded}
+            
         </div>
     )
 }

@@ -65,6 +65,7 @@ function FileUpload({clickedVideo,setConvertCompleted}) {
             <div className="file__preview">
             <div className="preview__video">
             <iframe src={clickedVideo} width="320" height="200"></iframe>
+            <img src="https://cdn.worldvectorlogo.com/logos/watermark.svg" alt="WaterMark" />
             </div>
             <div className="file__progress">
                 <div className="file__progressBar">

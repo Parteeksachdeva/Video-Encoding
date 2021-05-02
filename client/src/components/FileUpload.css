@@ -54,3 +54,15 @@
     align-items: center;
     justify-content: center;
 }
+
+.preview__video{
+    position: relative;
+}
+.preview__video>img{
+    object-fit: contain;
+    width: 30px;
+    position: absolute;
+    top: 30px;
+    right: 50px;
+   opacity: 0.6;
+}
