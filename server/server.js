@@ -12,6 +12,8 @@ const bodyParser = require('body-parser')
 
 const app = express()
 
+const fileUpload = require('express-fileupload');
+
 var dir = 'public';
 var subDirectory = 'public/uploads'
 
@@ -30,6 +32,8 @@ var storage = multer.diskStorage({
       cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
     }
 })
+
+
 
 var upload = multer({storage:storage})
 
@@ -56,6 +60,7 @@ app.post('/upload',upload.single('file'),(req,res,next) => {
                 if(err) console.log(err)
                 fs.unlinkSync(req.file.path)
                 //fs.unlinkSync(output)
+                res.status(201)
                 next()
 
             })
@@ -63,6 +68,12 @@ app.post('/upload',upload.single('file'),(req,res,next) => {
         })
     }
 })
+
+app.post('/uploadImage', upload.single('file'),(req, res) => {
+    console.log(req.file.path)
+    res.status(201)
+    next()
+});
 
 app.listen(PORT,() => {
     console.log(`App is listening on Port ${PORT}`)

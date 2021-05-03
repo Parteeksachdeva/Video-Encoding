@@ -5,11 +5,12 @@ import FileUpload from "./components/FileUpload";
 
 function App() {
   const [clickedVideo,setClickedVideo] = useState("https://www.youtube.com/embed/uilkmUoXoLU");
+  const [styleClicked,setStyleClicked] =useState(false)
 
   return (
     <div className="app">
-     <FileUpload clickedVideo={clickedVideo}/>
-     <Body setClickedVideo={setClickedVideo}/>
+     <FileUpload clickedVideo={clickedVideo} styleClicked={styleClicked}/>
+     <Body setClickedVideo={setClickedVideo} setStyleClicked={setStyleClicked} styleClicked={styleClicked}/>
     </div>
    );
  }

@@ -1,8 +1,10 @@
 .video{
     position: relative;
+    cursor: pointer;
 }
 .video>img{
-    object-fit: contain;
+    /* object-fit: contain; */
+    height: 160px;
     width:200px;
 }
 .video>video{

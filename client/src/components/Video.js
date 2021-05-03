@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
+import Loading from './Loading'
 import "./Video.css"
-function Video({value,setClickedVideo}) {
+function Video({value,setClickedVideo,thumbnail}) {
 
     const [isLoaded, setIsLoaded] = useState(false)
     const [Duration, setDuration] = useState()
@@ -26,13 +27,14 @@ function Video({value,setClickedVideo}) {
     return (
         
         <div className="video" onClick={()=>{setClickedVideo(value.default)}}>
-            {isLoaded ? <img src="https://stilearning.com/vision/assets/globals/img/dummy/img-10.jpg" alt="" /> : "wait"}
-            <video onLoadedData={()=>{
-                 setIsLoaded(true)
+           
+           
+            {isLoaded ? <img src={thumbnail} alt="" /> : <Loading />}
+            <video onLoadedData={()=>{setIsLoaded(true)
             }} width="200" height="160" onMouseOver={over} onMouseOut={out} autoPlay={false} loop={true} pause="" muted>
                 <source src={value.default} type="video/mp4"/>
             </video>
-            {isLoaded}
+            
         </div>
     )
 }
