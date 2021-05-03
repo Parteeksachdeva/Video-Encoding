@@ -43,6 +43,10 @@ app.use(express.static('public'))
 
 const PORT = process.env.PORT || 5000
 
+app.get('/',(req,res) => {
+    res.sendFile(__dirname +'/client/public/index.html')
+})
+
 app.post('/upload',upload.single('file'),(req,res,next) => {
     if(req.file){
         console.log(req.file.path)
