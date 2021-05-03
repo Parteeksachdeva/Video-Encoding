@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import "./FileUpload.css"
 import axios from "axios"
 
-function FileUpload({clickedVideo,setConvertCompleted}) {
+function FileUpload({clickedVideo,styleClicked}) {
     const [videos,setVideos] = useState()
     const [thumbnail,setThumbnail] = useState()
     const [uploadPercentage, setUploadPercentage] = useState(0);
@@ -58,10 +58,10 @@ function FileUpload({clickedVideo,setConvertCompleted}) {
         catch(err){
             console.log(err)
         }
-        
     }
     return (
-        <div className="file">
+        <div className={`file ${styleClicked ? "fileSmall" :"offclick"}`}>
+            <div className="file__transparent"></div>
             <div className="file__preview">
             <div className="preview__video">
             <iframe src={clickedVideo} width="320" height="200"></iframe>
@@ -77,15 +77,15 @@ function FileUpload({clickedVideo,setConvertCompleted}) {
             </div>
             <div className="file__form">
                 <form onSubmit={onSubmit}>
-                <div>
-                <label> Choose Video </label>
-                <input type='file' accept="video/mp4,video/x-m4v,video/*" onChange={handleVideos}/>
-                </div>
-                <div>
-                <label>Choose Thumbnail</label>
-                <input type='file' accept="image/x-png,image/gif,image/jpeg" onChange={handleThumbnail}/>
-                </div>
-                <input type="submit"/>
+                    <div>
+                    <label> Choose Video </label>
+                    <input type='file' accept="video/mp4,video/x-m4v,video/*" onChange={handleVideos}/>
+                    </div>
+                    <div>
+                    <label>Choose Thumbnail</label>
+                    <input type='file' accept="image/x-png,image/gif,image/jpeg" onChange={handleThumbnail}/>
+                    </div>
+                    <input type="submit"/>
                 </form>
             </div>
         </div>

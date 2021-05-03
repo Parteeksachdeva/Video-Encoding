@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import Loading from './Loading'
 import "./Video.css"
 function Video({value,setClickedVideo,thumbnail}) {
 
@@ -28,7 +29,7 @@ function Video({value,setClickedVideo,thumbnail}) {
         <div className="video" onClick={()=>{setClickedVideo(value.default)}}>
            
            
-            {isLoaded ? <img src={thumbnail} alt="" /> : "wait"}
+            {isLoaded ? <img src={thumbnail} alt="" /> : <Loading />}
             <video onLoadedData={()=>{setIsLoaded(true)
             }} width="200" height="160" onMouseOver={over} onMouseOut={out} autoPlay={false} loop={true} pause="" muted>
                 <source src={value.default} type="video/mp4"/>

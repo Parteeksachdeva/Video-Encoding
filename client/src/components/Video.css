@@ -1,5 +1,6 @@
 .video{
     position: relative;
+    cursor: pointer;
 }
 .video>img{
     /* object-fit: contain; */

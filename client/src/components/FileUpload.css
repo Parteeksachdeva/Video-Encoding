@@ -1,17 +1,33 @@
 .file{
     flex:0.3;
     width: 100%;
+    position: relative;
     height: 100%;
     display: flex;
     flex-direction: column;
+    border-right: 5px solid black;
+    background-image: url("https://wallpapercave.com/wp/wp2971721.jpg");
+    /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3FjNyRX2nsG6U74huiC04sETPcAvwzxrfSg&usqp=CAU"); */
+    /* background-size: cover; */
+    /* background-color: rgba(228, 28, 28, 0.288); */
+}
+.file__transparent{
+    position: absolute;
+    top:0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.175;
 }
 .file__preview{
     height: 70%;
     width: 100%;
+    z-index: 1;
 }
 .file__form{
     height: 30%;
     width: 100%;
+    z-index: 1;
 }
 .file__form>form{
     display: flex;
@@ -38,11 +54,12 @@
 .file__progressBar{
     width: 80%;
     margin: 15px;
-    background-color: grey;
+    background-color: rgb(194, 186, 186);
     height: 30px;
 }
 .progressBar__percentage{
-    background-color: green;
+    background-color:rgb(7, 92, 7);
+    color:  black;
     height: 30px;
     width: 0%;
     display: flex;
@@ -65,4 +82,50 @@
     top: 30px;
     right: 50px;
    opacity: 0.6;
+}
+
+.file__form>form>input{
+    border: none;
+    padding: 10px;
+    background-color: rgba(206, 50, 50, 0.829);
+    border: 1px black solid;
+    color: rgba(255, 255, 255, 0.774);
+    cursor: pointer;
+}
+.file__form>form>div>label{
+    color:rgb(0, 0, 0);
+    font-weight: 1000;
+    max-width: 100px;
+}
+
+::-webkit-file-upload-button {
+    background: rgba(23, 29, 82, 0.829);
+    color:rgb(255, 254, 253);
+    cursor: pointer;
+}
+
+.file__form>form>input:hover{
+    border: 2px black solid;
+    background-color: rgb(206, 50, 50);
+}
+
+.file__form>form>div{
+    width: 90%;
+    background-color: rgba(255, 255, 255, 0.342);
+    /* border: 2px solid black; */
+}
+
+
+@media (max-width:650px) {
+    .file{
+        display: none;
+    }
+    .fileSmall{
+        display: flex;
+        flex: 1 !important;
+    }
+    .preview__video{
+        margin-top: 20px;
+    }
+
 }
