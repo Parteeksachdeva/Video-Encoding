@@ -8,8 +8,8 @@ function Body({setClickedVideo,setStyleClicked,styleClicked}) {
     function importAll(r) {
         return r.keys().map(r);
       }
-      const videos = importAll(require.context('../../../server', false, /\.(mp4)$/));
-      setThumbnail(importAll(require.context('../../../server/public/uploads', false, /\.(png|jpe?g|svg)$/)));
+      const videos = importAll(require.context('../../../', false, /\.(mp4)$/));
+      setThumbnail(importAll(require.context('../../../public/uploads', false, /\.(png|jpe?g|svg)$/)));
       
     return (
         <div className="body">

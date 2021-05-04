@@ -6,6 +6,7 @@
 /client/.pnp.js
 /client/public/upload
 /server/node_modules
+/node_modules
 /server/.pnp
 /server/.pnp.js
 
