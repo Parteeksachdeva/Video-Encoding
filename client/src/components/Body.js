@@ -7,7 +7,7 @@ import { FiMenu } from 'react-icons/fi'
 function Body({setClickedVideo,setStyleClicked,styleClicked}) {
     const [thumbnail, setThumbnail] = useState([])
     useEffect(() => {
-       setThumbnail(importAll(require.context('../../public/uploads', false, /\.(png|jpe?g|svg)$/)));
+       setThumbnail(importAll(require.context('../../../public/uploads', false, /\.(png|jpe?g|svg)$/)));
     }, [])
     function importAll(r) {
         return r.keys().map(r);
