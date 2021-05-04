@@ -14,7 +14,7 @@ const app = express()
 
 var dir = 'public';
 var subDirectory = 'public/uploads'
-app.use(express.static(path.join(__dirname, '../client/public')));
+app.use(express.static(path.join(__dirname, 'client/public')));
 
 if (!fs.existsSync(dir)){
     fs.mkdirSync(dir);
