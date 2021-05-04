@@ -1,15 +1,19 @@
 import React,{useState,useEffect} from 'react'
 import "./Body.css"
 import Video from './Video';
+// import MenuIcon from '@material-ui/icons/Menu';
 import { FiMenu } from 'react-icons/fi'
 
 function Body({setClickedVideo,setStyleClicked,styleClicked}) {
     const [thumbnail, setThumbnail] = useState([])
+    useEffect(() => {
+       setThumbnail(importAll(require.context('../../../public/uploads', false, /\.(png|jpe?g|svg)$/)));
+    }, [])
     function importAll(r) {
         return r.keys().map(r);
       }
       const videos = importAll(require.context('../../../', false, /\.(mp4)$/));
-      setThumbnail(importAll(require.context('../../../public/uploads', false, /\.(png|jpe?g|svg)$/)));
+      
       
     return (
         <div className="body">
