@@ -16,13 +16,6 @@ var dir = 'public';
 var subDirectory = 'public/uploads'
 app.use(express.static(path.join(__dirname, '../client/public')));
 
-if (!fs.existsSync(dir)){
-    fs.mkdirSync(dir);
-
-    fs.mkdirSync(subDirectory)
-
-}
-
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, 'public/uploads')
