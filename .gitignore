@@ -11,6 +11,10 @@
 /server/.pnp.js
 /client/build
 
+npm-debug.log
+.DS_Store
+/*.env
+
 # testing
 /coverage
 
