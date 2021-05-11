@@ -4,7 +4,7 @@ import Body from "./components/Body";
 import FileUpload from "./components/FileUpload";
 
 function App() {
-  const [clickedVideo,setClickedVideo] = useState("https://www.youtube.com/embed/uilkmUoXoLU");
+  const [clickedVideo,setClickedVideo] = useState("https://www.youtube.com/embed/NzBuOXzZtvo");
   const [styleClicked,setStyleClicked] =useState(false)
 
   return (
